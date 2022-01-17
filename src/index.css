@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Montserrat', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;900&display=swap');
+
+
+
+#home-body {
+  /* background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/country-quilt-dark.png'); */
+  background-color: #101010;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300;1,400&display=swap');
