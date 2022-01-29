@@ -1,648 +1,400 @@
-// Version 1
+// Version 2.2022.1
+// Hey There! this is Jon, this site is a learning experience so please excuse the amount of comments in the code they are essentially study notes, Thanks! 
 
+import { GitHub, Instagram } from '@mui/icons-material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Card, Container, Grid, List, ListItem, ListItemIcon, Modal, Typography } from '@mui/material';
+import { useState, createContext } from 'react';
+import { toolArray } from '../data/Tools';
+import ToolIcon from './ToolIcon/ToolIcon';
+import { projectArray } from '../data/ProjectsData';
+import Projects from './Projects/Projects';
+import ProjectModal from './ProjectModal/ProjectModal';
+import { resumeArray } from '../data/resumeData';
+import Resume from './resume/Resume';
 
-import { Typography, Box, Container, Card, Paper, Grid, Button, Icon, Accordion, AccordionSummary, AccordionDetails, List, ListItem, ListItemIcon, Modal, CardActionArea } from '@mui/material';
-import { PhotoCamera, Contrast, Instagram, GitHub } from '@mui/icons-material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { ThemeContext } from '@emotion/react';
-import {useState} from 'react';
-import { margin, borderTop, borderRadius, fontStyle, border, textAlign } from '@mui/system';
+// exporting the funtions
+export const projectModalOpenContext = createContext(false);
+export const projectModalObjContext = createContext(false);
 
-
-
-// --- Page Structure ---
+// --- Modal ---
 function Home() {
 
+    // declaring two functions, 'if Modal is Open' & 'what is in the Modal'
+    const [projectModalOpen, setProjectModalOpen] = useState(false);
+    const [projectModalObj, setProjectModalObj] = useState('');
+
+
     const [open, setOpen] = useState(false);
-    const handleOpen = () => open ? setOpen(false) : setOpen(true); 
+    //const is normally a constant, but it references the immediate value on the right side of the =.
+    //In this case, the const references the useState is being permamently mapped to "open" and "setOpen", but the value of the useState can change
+
+    const handleOpen = () => open ? setOpen(false) : setOpen(true);
     //Terinary syntax: if opened(?) set to close, else (:) open
-   
-
-    const [open1, setOpen1] = useState(false);
-    const handleOpen1 = () => open1 ? setOpen1(false) : setOpen1(true);
-
-    const [open2, setOpen2] = useState(false);
-    const handleOpen2 = () => open2 ? setOpen2(false) : setOpen2(true);
 
 
-    const [open3, setOpen3] = useState(false);
-    const handleOpen3 = () => open3 ? setOpen3(false) : setOpen3(true); 
-    //Terinary syntax: if opened(?) set to close, else (:) open
-   
+    // --- Page Structure ---
+    return (
+        <div id="home-body">
 
-    const [open4, setOpen4] = useState(false);
-    const handleOpen4 = () => open4 ? setOpen4(false) : setOpen4(true);
+            <projectModalOpenContext.Provider value={{ projectModalOpen, setProjectModalOpen }}>
+                <projectModalObjContext.Provider value={{ projectModalObj, setProjectModalObj }}>
+                    {
+                        //get Project Modal
+                    }
+                    <ProjectModal />
 
-    const [open5, setOpen5] = useState(false);
-    const handleOpen5 = () => open5 ? setOpen5(false) : setOpen5(true);
+                    <Container maxWidth={false} sx={mainContent}>
 
-    const [open6, setOpen6] = useState(false);
-    const handleOpen6 = () => open6 ? setOpen6(false) : setOpen6(true); 
-    //Terinary syntax: if opened(?) set to close, else (:) open
-   
+                        <Box maxWidth={'xl'} sx={{ margin: '0 auto' }}>
+                            <Grid container spacing={0} sx={{ paddingTop: '20px' }}>
 
-    const [open7, setOpen7] = useState(false);
-    const handleOpen7 = () => open7 ? setOpen7(false) : setOpen7(true);
+                                {
+                                    // ----- Top Nav -----
+                                }
 
-    const [open8, setOpen8] = useState(false);
-    const handleOpen8 = () => open8 ? setOpen8(false) : setOpen8(true);
-    
-
-
-return(
-    <div id="home-body">
-    <Container  maxWidth={false} sx={{flexGrow: 1, bgcolor:'#0a0a0a',borderBottom:'1px solid #1a1a1a'}}>
-       
-       <Box maxWidth='100%'sx={navCenter}>
-        <Grid container spacing={0} >
-            <Grid item xs={12} sm={4} sx={{padding:'15px 0 0'}} > 
-                <img src='https://static.wixstatic.com/media/aaba45_94b78673a269460f95213b5da42b9cba~mv2.png/v1/fill/w_37,h_37,al_c,q_85,usm_1.20_1.00_0.01/jv-logo.webp'/>
-            </Grid>
-            <Grid item xs={8}>
-                <Typography sx={mainNav}>
-                    <List >
-                        <ListItem sx={{display:'inline-block', width:'120px'}}>Home</ListItem>
-                        <ListItem sx={{display:'inline-block', width:'120px'}}>Skills</ListItem>
-                        <ListItem sx={{display:'inline-block', width:'120px'}}>Portfolio</ListItem>
-                        <ListItem sx={{display:'inline-block', width:'120px'}}>Resume</ListItem>
-                        <ListItem sx={{display:'inline-block', width:'200px'}}>
-                            <Button sx={{bgcolor:'#c71010',color:'#ffffff', padding:'5px 20px'}}>contact us</Button>
-                        </ListItem>
-                        <ListItem sx={{display:'inline-block', padding:'0', margin:'0', width:'100px'}}>
-                            <Instagram></Instagram> <GitHub></GitHub>
-                        </ListItem>
-                    </List>
-                </Typography>
-            </Grid>
-        </Grid>
-        </Box>   
-     </Container>
-
-     <Container maxWidth={false} sx={mainContent}>
-        <Grid container spacing={0} sx={{paddingTop: '110px'}}>
-            <Grid item xs={12} sm={12} md={12} lg={7} sx={intro}>
-                <Box sx={introBox}>
-                <Typography sx={{fontSize:'.3', color: '#c71010', fontFamily: 'Montserrat',textAlign:'left', fontWeight:'bold' }}>
-                One Two Three
-                </Typography>
-                <Typography variant='h1' sx={introHeadline}>
-                And So The Nightmare Begins Again...
-                </Typography> 
-                <Typography sx={{color:'#cbcbcb', fontFamily:'Merriweather',fontStyle:'italic', fontWeight:'100', textAlign:'left'}}>
-                And I will strike down upon thee with great vengeance and furious anger those who would attempt to poison and destroy My brothers. And you will know My name is the Lord when I lay My vengeance upon thee.
-                </Typography>
-                </Box>
-            </Grid>
-            
-
-            <Grid item xs={12} sm={12} md={12} lg={5} sx={{paddingTop:'10px'}}>
-            <Box sx={portrait}>
-            <img src="https://media-exp1.licdn.com/dms/image/C4D03AQGZCx53WLU0kg/profile-displayphoto-shrink_800_800/0/1517499924283?e=1645660800&v=beta&t=lxy5dgXsNnKSxMLyqDGI8wUwx4Ezzq1kWA4Io5cOgkw" alt='Jonathan Vasquez' title='Jonathan Vasquez' width='100%'/>
-            </Box> 
-            </Grid>
-        </Grid>
-
-    </Container>
-
-    <Card sx={videoCard}>
-    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/iutQJzAXiWo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </Card>
-    
-
-    {
-     // ----- Skills -----
-    }
+                                <Grid item xs={12} sm={12} md={1} lg={1} sx={{ margin: '15px 0 0' }}>
+                                    <Box sx={logo}>
+                                        <img src='https://static.wixstatic.com/media/aaba45_94b78673a269460f95213b5da42b9cba~mv2.png/v1/fill/w_115,h_115,al_c,q_85,usm_1.20_1.00_0.01/jv-logo.webp' width='75px' />
+                                    </Box>
+                                </Grid>
 
 
-    <Container maxWidth={'xl'} sx={{ borderBottom:'1px solid #202020', margin: '0 auto'}}>
-        
-        <Grid container spacing={5} sx={{padding:'10vh 0 7vh'}}>
-            <Grid container xs={12} sm={12} md={6} lg={6} sx={{ paddingLeft: {xs:'40px', sm:'0'} }}>
-                <Grid item xs={12} sm={12} md={6} lg={6} sx={{padding:'5vh'}}>
-                    <Card sx={skillBox}>
-                        <Box sx={skillIcon}>
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/e7af40134894253.61de6bd52f880.png" width='50px' sx={whiteIcon} />
+                                <Grid item xs={12} sm={12} md={9} lg={9} sx={{ paddingTop: '35px' }}>
+                                    <Typography sx={mainNav}>
+                                        <List>
+                                            <ListItem sx={{ display: 'inline', maxWidth: '200px', padding: '50px' }}>Gallery</ListItem>
+                                            <ListItem sx={{ display: 'inline', maxWidth: '200px', padding: '50px' }}>Resume</ListItem>
+                                            <ListItem sx={{ display: 'inline', maxWidth: '200px', padding: '50px' }}>Contact</ListItem>
+                                        </List>
+                                    </Typography>
+                                </Grid>
+
+                                <Grid item xs={12} sm={12} md={2} lg={2} sx={{ paddingTop: '35px', }}>
+                                    <Box sx={navIcons}>
+                                        <List >
+                                            <ListItem sx={{ display: 'inline', padding: '0', margin: '5px 0 0', maxWidth: '25px' }}>
+                                                <a href="https://www.behance.net/jonvasquezbca7" ><Box sx={{ marginBottom: '-10px', display: 'table-caption', paddingRight: '25px' }}><img src='https://mir-s3-cdn-cf.behance.net/project_modules/disp/3427fd134894253.61e63e19b43d5.png' alt='Behance' width='20px' /></Box></a>
+                                            </ListItem>
+                                            <ListItem sx={{ display: 'inline', padding: '0', margin: '5px 0 0', maxWidth: '25px' }}>
+                                                <a href="https://www.instagram.com/jon_v_designs/"><Instagram sx={{ marginBottom: '-8px', color: '#ffffff', paddingLeft: '10px', paddingRight: '25px' }}></Instagram></a>
+                                            </ListItem>
+                                            <ListItem sx={{ display: 'inline', padding: '0', margin: '5px 0 0', maxWidth: '25px' }}>
+                                                <a href="https://github.com/JonoVas3" ><GitHub sx={{ marginBottom: '-8px', color: '#ffffff', paddingLeft: '10px' }}></GitHub></a>
+                                            </ListItem>
+                                        </List>
+                                    </Box>
+                                </Grid>
+
+                            </Grid>
+
+                            {
+                                // ----- Main Header Content -----
+                            }
+
+                            <Grid container spacing={0} sx={header}>
+                                <Grid item xs={12} sm={12} md={12} lg={7} sx={intro}>
+                                    <Box sx={introBox}>
+                                        <Typography sx={{ fontSize: '.3', color: '#c71010', fontFamily: 'Raleway', textAlign: 'left', fontWeight: 'bold', textTransform: 'uppercase' }}>
+                                            I'm Jonathan Vasquez
+                                </Typography>
+                                        <Typography variant='h1' sx={introHeadline}>
+                                            A UI/UX Designer with Front-end<br />  Development experience
+                                </Typography>
+                                        <Typography sx={{ color: '#cbcbcb', fontFamily: 'Raleway', fontWeight: '400', textAlign: 'left' }}>
+                                            I am a freelance designer/developer based out of Raleigh, NC. I am also skilled in photography, video production, and video editing. If you want to see an example of my work click on the links to see the designing process or the code that I used to build this website.
+                                </Typography>
+                                        <Button sx={{ float: 'left', margin: '20px 0 0', color: '#ffffff', padding: '10px 20px', backgroundColor: '#c71010', borderRadius: '0' }}>Watch Video</Button>
+                                        <Button sx={{ float: 'left', margin: '20px 0 0 25px', color: '#ffffff', padding: '10px 20px', backgroundColor: '#c71010', borderRadius: '0' }}>View Code</Button>
+                                    </Box>
+                                </Grid>
+
+
+                                <Grid item xs={12} sm={12} md={12} lg={5} sx={{ portraitBox }}>
+                                    <Box sx={{ maxWidth: '600px', margin: '0 auto' }}>
+                                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/70b999135992597.61f17d0b4c320.png" alt='Jonathan Vasquez' title='Jonathan Vasquez' width='100%' />
+                                    </Box>
+                                </Grid>
+                            </Grid>
+
+
                         </Box>
-                        <Typography sx={skillTitle}> 
-                        UI &amp; UX Design
-                        </Typography> 
-                        <Typography  sx={skillInfo}>
-                        And So The Nightmare Begins Again...
-                        </Typography> 
+
+                    </Container>
+
+
+                    {
+                        // ----- Video -----
+                    }
+
+
+                    <Card sx={videoCard}>
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/iutQJzAXiWo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </Card>
-                </Grid>
-                <Grid item xs={12} sm={12} md={6} lg={6} sx={{padding:'5vh'}} >
-                    <Card sx={skillBox}>
-                        <Box sx={skillIcon}>
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/70ee0c134894253.61de6cc304a91.png" width='50px' sx={whiteIcon} />
+
+
+                    {
+                        // ----- Skills -----
+                    }
+
+                    <Container maxWidth={false}>
+                        <Box maxWidth={'xl'} sx={{ margin: '0 auto' }}>
+
+                            <Grid container spacing={0}>
+                                <Grid item xs={12} sm={12} md={12} lg={12} sx={{ marginBottom: '20px' }}>
+                                    <Box sx={introBox}>
+                                        <Typography variant='h1' sx={headline}>
+                                            What I Do
+                                </Typography>
+                                        <Typography sx={subheadline}>
+                                            And The <Typography sx={redText}>Tools</Typography> I Use Everyday
+                                </Typography>
+                                        <Typography sx={{ color: '#cbcbcb', fontFamily: 'Raleway', fontWeight: '400', textAlign: 'left' }}>
+                                            I use a number of tools and programs everyday, Including the Adobe Creative Suite, HTML 5 and CSS3, DSLR Photography and Video. I’m also learning more about Javascript, React, and Material UI.
+                                </Typography>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+
+
+                            <Grid container spacing={0}>
+                                {toolArray.map((tool) => {
+                                    return (<ToolIcon title={tool.title} altText={tool.alt_text} />)
+                                })};
+                            </Grid>
                         </Box>
-                        <Typography sx={skillTitle}> 
-                        Video Production
-                        </Typography>
-                        <Typography  sx={skillInfo}>
-                        And So The Nightmare Begins Again...
-                        </Typography>  
-                    </Card>
-                </Grid>
-                <Grid item xs={12} sm={12} md={6} lg={6} sx={{padding:'5vh'}} >
-                    <Card sx={skillBox}>
-                        <Box sx={skillIcon}>
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d3e2c6134894253.61de6bd52f118.png" width='50px' sx={whiteIcon} />
+                    </Container>
+
+                    {
+                        // ----- Projects -----
+                    }
+
+                    <Container maxWidth={false} sx={{ marginTop: '140px', paddingBottom: '70px' }}>
+                        <Box maxWidth={'xl'} sx={{ margin: '0 auto' }}>
+
+                            <Grid container spacing={0}>
+                                <Grid item xs={12} sm={12} md={12} lg={12} sx={{ marginBottom: '20px' }}>
+                                    <Box sx={introBox}>
+                                        <Typography variant='h1' sx={headline}>
+                                            My Portfolio
+                                </Typography>
+                                        <Typography sx={subheadline}>
+                                            Projects That I'm <Typography sx={redText}>Proud</Typography> of
+                                </Typography>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+
+                            {
+                                // projectArray is defined at the top in ProjectsData.js, each Const in the array is referenced by .map((projects)
+                                // Second line returns Projects
+                            }
+
+                            <Grid container spacing={0}>
+                                {projectArray.map((project) => {
+                                    return (<Projects title={project.title} altText={project.alt_text} opener={(event) => {
+                                        setProjectModalObj(project);
+                                        setProjectModalOpen(true);
+                                    }} />)
+                                })};
+                    </Grid>
+
                         </Box>
-                        <Typography sx={skillTitle}> 
-                        Graphic Design
-                        </Typography>
-                        <Typography  sx={skillInfo}>
-                        And So The Nightmare Begins Again...
-                        </Typography>  
-                    </Card>
-                </Grid>
-                <Grid item xs={12} sm={12} md={6} lg={6} sx={{padding:'5vh'}} >
-                    <Card sx={skillBox}>
-                        <Box sx={skillIcon}>
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8a51f9134894253.61de6bd52ec30.png" width='50px' sx={whiteIcon} />
+                    </Container>
+
+                    {
+                        // --- Resume ---
+                    }
+
+                    <Container maxWidth={false} sx={{ marginTop: '0px' }}>
+                        <Box maxWidth={'xl'} sx={{ margin: '0 auto', borderTop: '1px solid #561e1e', padding: '100px 0 0' }}>
+
+                            <Grid container spacing={0}>
+                                <Grid item xs={12} sm={12} md={6} lg={6} sx={{ marginBottom: '20px' }}>
+                                    <Box sx={introBox}>
+                                        <Typography variant='h1' sx={headline}>
+                                            What I Do
+                                        </Typography>
+                                        <Typography sx={subheadline}>
+                                            And <Typography sx={redText}>Teams</Typography> I've Worked With
+                                        </Typography>
+                                        <Typography sx={{ color: '#cfcfcf', textAlign: 'left', paddingRight: '30px' }}>
+                                            In my ten years of experience I’ve worked with companies ranging from small start-ups, to design firms, to multi-national corporations. I’ve designed over 250 websites and hundreds of different brands. My skillset includes the list below :
+                                        </Typography>
+
+                                        <Grid container spacing={0} sx={{ color: '#cfcfcf', margin: '30px 0 0', textAlign: 'left', fontWeight: '700' }}>
+                                            <Grid item xl={6}>
+                                                <List>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            HTML 5
+                                                        </Typography>
+                                                    </ListItem>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            CSS 3
+                                                        </Typography>
+                                                    </ListItem>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            Photoshop
+                                                        </Typography>
+                                                    </ListItem>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            Illustrator
+                                                        </Typography>
+                                                    </ListItem>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            Indesign
+                                                        </Typography>
+                                                    </ListItem>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            Adobe XD
+                                                        </Typography>
+                                                    </ListItem>
+                                                </List>
+                                            </Grid>
+                                            <Grid item xl={6}>
+                                                <List>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            Premire Pro
+                                                        </Typography>
+                                                    </ListItem>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            After Effects
+                                                        </Typography>
+                                                    </ListItem>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            Video Production
+                                                        </Typography>
+                                                    </ListItem>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            Video Editing
+                                                        </Typography>
+                                                    </ListItem>
+                                                    <ListItem sx={skillListItem}>
+                                                        <Typography sx={skillListInfo}>
+                                                            Photography
+                                                        </Typography>
+                                                    </ListItem>
+                                                </List>
+                                            </Grid>
+                                        </Grid >
+
+                                        <Button sx={{ float: 'left', margin: '40px 0', color: '#ffffff', padding: '20px 40px', backgroundColor: '#c71010', borderRadius: '0' }}>Download Resume</Button>
+
+
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={12} sm={12} md={6} lg={6} spacing={0}>
+                                    {resumeArray.map((resume) => {
+                                        return (<Resume resumeObj={resume} />)
+                                        {// funtion prop={data}
+                                        }
+
+                                    })};
+                                </Grid>
+                            </Grid>
+
                         </Box>
-                        <Typography sx={skillTitle}> 
-                        Photography
-                        </Typography>
-                        <Typography  sx={skillInfo}>
-                        And So The Nightmare Begins Again...
-                        </Typography>  
-                    </Card>
-                </Grid>
-            </Grid>
-
-    {
-     // ----- Tools -----
-    }
-           
-
-            <Grid item xs={12} sm={12} md={6} lg={6} justifyContent='center' sx={{float:'left'}}>
-                <Typography sx={headline}>
-                The  <Box sx={{color:'#c71010', display: 'inline' }}>Tools</Box> I Use Everyday
-                </Typography>
-                <Box sx={{padding:'20px', textAlign:'left'}}>
-                <Grid container spacing={0} sx={{marginTop:'50px', marginLeft:'30px'}}>
-                    <Grid item xs={4} md={4} sx={{marginBottom:'20px'}} > 
-                    <img src="https://cdn3.iconfinder.com/data/icons/adobe-family-software/512/Adobe-23-512.png" alt='Photoshop' title='Photoshop' width='75px' />
-                    </Grid>
-                    <Grid item xs={4} md={4} sx={{marginBottom:'20px'}} >
-                    <img src="https://cdn3.iconfinder.com/data/icons/adobe-family-software/512/Adobe-01-512.png" alt='Illustrator' title='Illustrator' width='75px' />
-                    </Grid>
-                    <Grid item xs={4} md={4} sx={{marginBottom:'20px'}} > 
-                    <img src="https://cdn3.iconfinder.com/data/icons/adobe-family-software/512/Adobe-35-512.png" alt='Adobe XD' title='Adobe XD' width='75px'/>
-                    </Grid>
-                    <Grid item xs={4} md={4} sx={{marginBottom:'20px'}} >
-                    <img src="https://cdn3.iconfinder.com/data/icons/adobe-family-software/512/Adobe-26-512.png" alt='Premiere Pro' title='Premiere Pro' width='75px' />
-                    </Grid>
-                    <Grid item xs={4} md={4} sx={{marginBottom:'20px'}} >
-                    <img src="https://cdn3.iconfinder.com/data/icons/adobe-family-software/512/Adobe-03-512.png" alt='After Effects' title='After Effects' width='75px'/>
-                    </Grid>
-                    <Grid item xs={4} md={4} sx={{marginBottom:'20px'}} >
-                    <img src="https://cdn3.iconfinder.com/data/icons/adobe-family-software/512/Adobe-20-512.png" alt='Indesign' title='Indesign' width='75px'/>
-                    </Grid>
-                    <Grid item xs={4} md={4} sx={{marginBottom:'20px'}} >
-                    <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/badge-html-5-256.png" alt='HTML5' title='HTML5' width='75px'/>
-                    </Grid>
-                    <Grid item xs={4} md={4} sx={{marginBottom:'20px'}} >
-                    <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/badge-css-3-256.png" alt='CSS3' title='CSS3' width='75px'/>
-                    </Grid>
-                    <Grid item xs={4} md={4} sx={{marginBottom:'20px'}} > 
-                    <img src="https://seeklogo.com/images/S/Sony_Alpha-logo-3BA7DFA79B-seeklogo.com.png" alt='Photography' title='Sony Photography' width='75px'/>
-                    </Grid>
-                    <Grid item xs={4} md={4} sx={{marginBottom:'20px'}} >
-                    </Grid>
-                </Grid>
-                </Box>
-            </Grid>
-        </Grid>
-    </Container>
+                    </Container>
 
 
-    {
-    // ----- Projects -----
-    }
+                    {
+                        // --- Contact ---
+                    }
+
+                    <Container maxWidth={false} sx={{ marginTop: '80px' }}>
+                        <Box maxWidth={'xl'} sx={{ margin: '0 auto', borderTop: '1px solid #561e1e', padding: '80px 0' }}>
+
+                            <Grid container spacing={0}>
+                                <Grid sx={{}} item xs={12} sm={12} md={8} lg={8} sx={{ marginBottom: '20px' }}>
+                                    <Box sx={introBox}>
+                                        <Typography variant='h1' sx={headline}>
+                                            Contact
+                                        </Typography>
+                                        <Typography sx={subheadline}>
+                                            Got a Project? let <Typography sx={redText}>Talk</Typography>
+                                        </Typography>
+                                        <Typography sx={{ color: '#cfcfcf', textAlign: 'left', paddingRight: '30px' }}>
+                                            Need a Designer? a Photographer? a Videographer? Feel free to email anytime and we can get started on bringing your project to life.
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+
+                                <Grid item xs={12} sm={12} md={4} lg={4} spacing={0}>
+                                    <Button sx={{ margin: { md: '40px auto 0', sm: '40px 0', xs: '40px 0' }, float: { md: 'none', sm: 'left' }, color: '#ffffff', padding: '20px 40px', backgroundColor: '#c71010', borderRadius: '0' }}>Contact Me</Button>
+                                </Grid>
+                            </Grid>
 
 
-    <Container maxWidth={'xl'} sx={{ borderTop:'1px solid black', borderBottom:'1px solid #202020', margin: '0 auto', padding:'10vh 0'}}>
-            <Typography sx={subheadline}>
-            My Portfolio
-            </Typography>
-
-            <Typography sx={headline}>
-            Projects That I'm <Box sx={redText}>Proud</Box> Of
-            </Typography>
-
-            <Grid container spacing={0} sx={{padding:'10vh 0 0'}}>
-
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={4} justifyContent='center'  onClick={handleOpen}>
-                    
-                    <Box sx={{padding:'10px', bgcolor:'#efc445',display:'inline-block',zIndex:'2'}}>                    
-                    <CardActionArea>
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/576216134894253.61de181a1a550.png" alt='HV Tech Branding' title='HV Tech Branding' width='100%' sx={{border:'1px solid #050505'}} />
-                    </CardActionArea>
-                    </Box>
-                    <Box sx={{padding:'3vh 0'}}>
-                        <Typography sx={headline}>
-                            Project name
-                        </Typography>
-                        <Typography sx={{color:'#c71010', textAlign: 'left', fontFamily: 'Montserrat', fontWeight: '500'}}>
-                            Project name
-                        </Typography>
-                    </Box>
-                    <Modal open={open} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={projectModal}>
-                        <Box >
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/0c57b745585641.5835b99faaa8e.jpg" width='100%'/>
-                        </Box >
-                    </Modal>
-                </Grid>
-
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={4} justifyContent='center' onClick={handleOpen1} >
-                    <Box sx={{padding:'10px', bgcolor:'#014977'}} >
-                    <CardActionArea>
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/999b25134894253.61de181a17e2a.png" alt='web1' title='web1' width='100%' sx={{border:'1px solid #050505'}} />
-                    </CardActionArea>
-                    </Box>
-                    <Box sx={{padding:'3vh 0'}}>
-                        <Typography sx={headline}>
-                            Project name
-                        </Typography>
-                        <Typography sx={{color:'#c71010', textAlign: 'left', fontFamily: 'Montserrat', fontWeight: '500'}}>
-                            Project name
-                        </Typography>
-                    </Box>
-                    <Modal open={open1} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={projectModal}>
-                        <Box >
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/09f65c132683445.61ae4d90589ee.jpg" width='100%'/>
-                        </Box >
-                    </Modal>
-                </Grid>
-
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={4} justifyContent='center' onClick={handleOpen2} >
-                    <Box sx={{padding:'10px', bgcolor:'#3ec555'}} >
-                        <CardActionArea>
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/2c0e49134894253.61de181a192b9.png" alt='web1' title='web1' width='100%' sx={{border:'1px solid #050505'}} />
-                        </CardActionArea>
-                    </Box>
-                    <Box sx={{padding:'3vh 0'}}>
-                        <Typography sx={headline}>
-                            Project name
-                        </Typography>
-                        <Typography sx={{color:'#c71010', textAlign: 'left', fontFamily: 'Montserrat', fontWeight: '500'}}>
-                            Project name
-                        </Typography>
-                    </Box>
-                    <Modal open={open2}  aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={projectModal}>
-                        <Box >
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/0cf4c5101234785.5f19f4cbaf8f1.jpg" width='100%'/>
-                        </Box >
-                    </Modal>
-                </Grid>
-
-
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={4} justifyContent='center' onClick={handleOpen3}>
-                    <Box sx={{padding:'10px', bgcolor:'#120a33',display:'inline-block',zIndex:'2'}}>
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/7dff35134894253.61de181a1a037.png" alt='web1' title='web1' width='100%' sx={{border:'1px solid #050505'}} />
-                    </Box>
-                    <Box sx={{padding:'3vh 0'}}>
-                        <Typography sx={headline}>
-                            Project name
-                        </Typography>
-                        <Typography sx={{color:'#c71010', textAlign: 'left', fontFamily: 'Montserrat', fontWeight: '500'}}>
-                            Project name
-                        </Typography>
-                    </Box>
-                    <Modal open={open3} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={projectModal}>
-                        <Box >
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/9be812100924665.5f136e314bd34.jpg" width='100%'/>
-                        </Box >
-                    </Modal>
-                </Grid>
-
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={4} justifyContent='center' onClick={handleOpen4} >
-                    <Box sx={{padding:'10px', bgcolor:'#8f0700'}}>
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/ef006d134894253.61de640255a22.png" alt='web1' title='web1' width='100%' sx={{border:'1px solid #050505'}} />
-                    </Box>
-                    <Box sx={{padding:'3vh 0'}}>
-                        <Typography sx={headline}>
-                            Project name
-                        </Typography>
-                        <Typography sx={{color:'#c71010', textAlign: 'left', fontFamily: 'Montserrat', fontWeight: '500'}}>
-                            Project name
-                        </Typography>
-                    </Box>
-                    <Modal open={open4} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={projectModal}>
-                        <Box >
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/135621103285781.5f4970f87e628.jpg" width='100%'/>
-                        </Box >
-                    </Modal>
-                </Grid>
-
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={4} justifyContent='center' onClick={handleOpen5} >
-                    <Box sx={{padding:'10px', bgcolor:'#145e0f'}}>
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/30a1aa134894253.61de6653e5605.png" alt='web1' title='web1' width='100%' sx={{border:'1px solid #050505'}} />
-                    </Box>
-                    <Box sx={{padding:'3vh 0'}}>
-                        <Typography sx={headline}>
-                            Project name
-                        </Typography>
-                        <Typography sx={{color:'#c71010', textAlign: 'left', fontFamily: 'Montserrat', fontWeight: '500'}}>
-                            Project name
-                        </Typography>
-                    </Box>
-                    <Modal open={open5} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={projectModal}>
-                        <Box >
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/1faf22112157499.600f77fcbc07b.jpg" width='100%'/>
-                        </Box >
-                    </Modal>
-                </Grid>
-
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={4} justifyContent='center' onClick={handleOpen6} >
-                    <Box sx={{padding:'10px', bgcolor:'#004b8b'}}>
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/dc13ae134894253.61de181a1779d.png" alt='web1' title='web1' width='100%' sx={{border:'1px solid #050505'}} />
-                    </Box>
-                    <Box sx={{padding:'3vh 0'}}>
-                        <Typography sx={headline}>
-                            Project name
-                        </Typography>
-                        <Typography sx={{color:'#c71010', textAlign: 'left', fontFamily: 'Montserrat', fontWeight: '500'}}>
-                            Project name
-                        </Typography>
-                    </Box>
-                    <Modal open={open6} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={projectModal}>
-                        <Box >
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/dfbfd846068201.5846e74ed8140.jpg" width='100%'/>
-                        </Box >
-                    </Modal>
-                </Grid>
-
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={4} justifyContent='center' onClick={handleOpen7} >
-                    <Box sx={{padding:'10px', bgcolor:'#31135c'}}>
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a8b2fd134894253.61de66d66e249.png" alt='web1' title='web1' width='100%' sx={{border:'1px solid #050505'}} />
-                    </Box>
-                    <Box sx={{padding:'3vh 0'}}>
-                        <Typography sx={headline}>
-                            Project name
-                        </Typography>
-                        <Typography sx={{color:'#c71010', textAlign: 'left', fontFamily: 'Montserrat', fontWeight: '500'}}>
-                            Project name
-                        </Typography>
-                    </Box>
-                    <Modal open={open7} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={projectModal}>
-                        <Box >
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/3161a7103242547.5f4896cd431af.jpg" width='100%'/>
-                        </Box >
-                    </Modal>
-                </Grid>
-
-
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={4} justifyContent='center' onClick={handleOpen8}>
-                    <Box sx={{padding:'10px', bgcolor:'#f0cc26',display:'inline-block',zIndex:'2'}}>
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/848de2134894253.61de181a1997b.png" alt='web1' title='web1' width='100%' sx={{border:'1px solid #050505'}} />
-                    </Box>
-                    <Box sx={{padding:'3vh 0'}}>
-                        <Typography sx={headline}>
-                            Project name
-                        </Typography>
-                        <Typography sx={{color:'#c71010', textAlign: 'left', fontFamily: 'Montserrat', fontWeight: '500'}}>
-                            Project name
-                        </Typography>
-                    </Box>
-                    <Modal open={open8} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description" sx={projectModal}>
-                        <Box >
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/7cd1ea45898369.58407fe154751.jpg" width='100%'/>
-                        </Box >
-                    </Modal>
-                </Grid>
-
-               
-            </Grid>
-                
-    </Container>
-
-
-
-    <Container maxWidth={'xl'} sx={{ borderTop:'1px solid black', margin: '0 auto', padding:'10vh 0'}}>
-            <Typography sx={subheadline}>
-            My Resume
-            </Typography>
-
-            <Typography sx={headline}>
-            And  <Box sx={redText}>Teams</Box> I've Worked With
-            </Typography>
-
-            <Grid container spacing={5} sx={{padding:'10vh 0 0'}}>
-                <Grid item xs={12} sm={12} md={12} lg={4} justifyContent='center'>
-                <Accordion sx={resume}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon sx={arrow} />} aria-controls="panel1a-content" id="panel1a-header"  >
-                        <Box sx={{marginTop:'0px', display:'inline', height:'70px', marginTop:'-20px'}}> 
-                        <img src="https://www.spstechnology.com/wp-content/uploads/2021/07/partner-logos-abs.png" alt='ABS' title='ABS' height='100px' /> 
                         </Box>
-                        <Typography sx={ resumeYear } >(2021)</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails sx={ resumeDetail }>
-                        <List>
-                            <ListItem disablePadding>
-                                <Typography sx={{fontWeight:'900'}}>Design Consultant (contract)</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Created video promotions and news updates</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Designed layouts for product update and technical documents</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Created presentations, ads, and graphics for tradeshows and partners</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Designed digital assets for social media campaigns</Typography>
-                            </ListItem>
-                        </List>
-                    </AccordionDetails>
-                </Accordion>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={4} justifyContent='center'>
-                <Accordion sx={resume}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon sx={arrow} />} aria-controls="panel2a-content" id="panel2a-header">
-                        <Box sx={{marginTop:'15px', display:'inline'}}> 
-                        <img src="https://www.capstonevideo.com/hs-fs/hubfs/DealerCreative-May2019/2020%20Logos/Capstone%20Video%202020%20-%20On%20Black%20For%20Small%20Applications.png?width=1779&name=Capstone%20Video%202020%20-%20On%20Black%20For%20Small%20Applications.png" alt='Capstone Production Group' title='Capstone Production Group' height='30px' />
+                    </Container>
+
+                    {
+                     // ----- Footer -----
+                    }
+                    <Box sx={{bgcolor:'#0f0303'}}>
+                        <Box maxWidth={'xl'} sx={{ margin: '0 auto' }}>
+                        <Grid container spacing={0} sx={{ paddingTop: '20px' }}>
+
+                            <Grid item xs={12} sm={12} md={1} lg={1} sx={{ margin: '15px 0 0' }}>
+                                <Box sx={logo}>
+                                    <img src='https://static.wixstatic.com/media/aaba45_94b78673a269460f95213b5da42b9cba~mv2.png/v1/fill/w_115,h_115,al_c,q_85,usm_1.20_1.00_0.01/jv-logo.webp' width='75px' />
+                                </Box>
+                            </Grid>
+
+
+                            <Grid item xs={12} sm={12} md={9} lg={9} sx={{ paddingTop: '35px' }}>
+                                <Typography sx={mainNav}>
+                                    <List>
+                                        <ListItem sx={{ display: 'inline', maxWidth: '200px', padding: '50px' }}>Gallery</ListItem>
+                                        <ListItem sx={{ display: 'inline', maxWidth: '200px', padding: '50px' }}>Resume</ListItem>
+                                        <ListItem sx={{ display: 'inline', maxWidth: '200px', padding: '50px' }}>Contact</ListItem>
+                                    </List>
+                                </Typography>
+                            </Grid>
+
+                            <Grid item xs={12} sm={12} md={2} lg={2} sx={{ padding: '35px 0', }}>
+                                <Box sx={navIcons}>
+                                    <List >
+                                        <ListItem sx={{ display: 'inline', padding: '0', margin: '5px 0 0', maxWidth: '25px' }}>
+                                            <a href="https://www.behance.net/jonvasquezbca7" ><Box sx={{ marginBottom: '-10px', display: 'table-caption', paddingRight: '25px' }}><img src='https://mir-s3-cdn-cf.behance.net/project_modules/disp/3427fd134894253.61e63e19b43d5.png' alt='Behance' width='20px' /></Box></a>
+                                        </ListItem>
+                                        <ListItem sx={{ display: 'inline', padding: '0', margin: '5px 0 0', maxWidth: '25px' }}>
+                                            <a href="https://www.instagram.com/jon_v_designs/"><Instagram sx={{ marginBottom: '-8px', color: '#ffffff', paddingLeft: '10px', paddingRight: '25px' }}></Instagram></a>
+                                        </ListItem>
+                                        <ListItem sx={{ display: 'inline', padding: '0', margin: '5px 0 0', maxWidth: '25px' }}>
+                                            <a href="https://github.com/JonoVas3" ><GitHub sx={{ marginBottom: '-8px', color: '#ffffff', paddingLeft: '10px' }}></GitHub></a>
+                                        </ListItem>
+                                    </List>
+                                </Box>
+                            </Grid>
+
+                            
+                            <Grid container spacing={0} sx={{borderTop: '1px solid #561e1e'}}>
+                                <Grid item xs={12} sm={12} md={12} lg={12} spacing={0}> 
+                                    <Typography sx={{ color: '#cfcfcf', padding: '20px 30px 20px 0', textAlign:{md:'right', sm:'center'}, color:'#561e1e' }}>
+                                    Copyright &copy; 2022  Jonathan Vasquez 
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+
+                        </Grid>
                         </Box>
-                        <Typography sx={ resumeYear }>(2021)</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails sx={ resumeDetail }>
-                        <List>
-                            <ListItem disablePadding>
-                                <Typography sx={{fontWeight:'900'}}>Motion Graphic Designer (Contract)</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Created video advertisements using recorded footage and motion graphics</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Directed live video shoots on location</Typography>
-                            </ListItem>
-                        </List>
-                    </AccordionDetails>
-                </Accordion>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={4} justifyContent='center'>
-                <Accordion  sx={resume}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon sx={arrow} />} aria-controls="panel3a-content" id="panel3a-header">
-                        <img src="https://mlhdnfzf1mb2.i.optimole.com/wf-MSBk-S66gxpPs/w:93/h:43/q:75/https://newviewphotosnc.com/wp-content/uploads/2018/08/NewViewLogos620x429.png" alt='Shoeboxed' title='Shoeboxed' height='50px'  sx={{logo}} />
-                        <Typography sx={ resumeYear } >(2020)</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails sx={ resumeDetail }>
-                        <List>
-                            <ListItem disablePadding>
-                                <Typography sx={{fontWeight:'900'}}>Photographer and Videographer </Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>HDR Photography</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Photo Editing and Manipulation</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Video Editing &amp; Production</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>3D Photography</Typography>
-                            </ListItem>
-                        </List>
-                    </AccordionDetails>
-                </Accordion>
-                </Grid>
-            </Grid>
+                    </Box>
 
-            <Grid container spacing={5} sx={{padding:'5vh 0 0'}}>
-                <Grid item xs={12} sm={12} md={12} lg={4} justifyContent='center'>
-                <Accordion sx={resume}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon sx={arrow} />} aria-controls="panel1a-content" id="panel1a-header">
-                        <Box sx={{marginTop:'15px'}}> 
-                        <img src="https://insightsoftware.com/wp-content/themes/jetreports/assets/images/logo_InsightSoftware_white.png" alt='insightsoftware' title='insightsoftware' height='30px'  sx={{marginTop:'15px'}} /> 
-                        </Box>
-                        <Typography sx={ resumeYear}>(2019-2020)</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails sx={ resumeDetail }>
-                        <List>
-                            <ListItem disablePadding>
-                                <Typography sx={{fontWeight:'900'}}>Design Consultant</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Filmed and edited video tutorials, interviews and online conferences</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Designed whiteletters, mailers, print ads, and tradeshow booths</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Coded and edited email templates</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Designed and planned Ad campaigns</Typography>
-                            </ListItem>
-                        </List>
-                    </AccordionDetails>
-                </Accordion>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={4} justifyContent='center'>
-                <Accordion sx={resume}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon sx={arrow} />} aria-controls="panel2a-content" id="panel2a-header">
-                        <Box sx={{marginTop:'10px'}}> 
-                        <img src="https://cdn.dribbble.com/users/73135/screenshots/3170388/attachments/674187/large-textivialightblue-notagline-transparentbg.png" alt='Textiva (now 3ve)' title='Textiva (now 3ve)' height='35px'  sx={{marginTop:'15px'}} />
-                        </Box>
-                        <Typography sx={ resumeYear }>(2014-2018)</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails sx={ resumeDetail }>
-                        <List>
-                            <ListItem disablePadding>
-                                <Typography sx={{fontWeight:'900'}}>Web &amp; Graphic Designer</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Created logos, social media assets, and branding standards for clients</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Planned and designed multi-page websites and layouts</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Designed icons, illustrations, and infographics</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Filmed and edited video advertisements with original and pre-filmed footage</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Created informative audio tutorials for clients</Typography>
-                            </ListItem>
-                        </List>
-                    </AccordionDetails>
-                </Accordion>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={4} justifyContent='center'>
-                <Accordion  sx={resume}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon sx={arrow} />} aria-controls="panel3a-content" id="panel3a-header">
-                        <Box sx={{marginTop:'10px'}}> 
-                        <img src="https://www.shoeboxed.com/wp-content/themes/sbx/test/img/logos/shoeboxed-white.png" alt='Textiva (now 3ve)' title='Textiva (now 3ve)' height='40px'  marginTop='105px'  />
-                        </Box>
-                        <Typography sx={ resumeYear } >(2012-2014)</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails sx={ resumeDetail }>
-                        <List>
-                            <ListItem disablePadding>
-                                <Typography sx={{fontWeight:'900'}}>Graphic Designer</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Built and standardized company branding</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Filmed and edited original video advertisements</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Designed icons, illustrations, and infographics</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Designed whiteletters, print ads, and merchandise</Typography>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemIcon><ChevronRightIcon sx={icon} /></ListItemIcon>
-                                <Typography sx={resumeBullet}>Built and edited Wordpress websites using HTML5, CSS3, and PHP</Typography>
-                            </ListItem>
-                        </List>
-                    </AccordionDetails>
-                </Accordion>
-                </Grid>
-            </Grid>
-          
-    </Container>
-
-
-
-
-
-
-     </div>
-)
+                </projectModalObjContext.Provider>
+            </projectModalOpenContext.Provider>
+        </div>
+    )
 }
 
 
@@ -650,278 +402,197 @@ return(
 // --- Page Styling ---
 
 const navCenter = {
-    fontFamily: 'Montserrat !important', 
+    fontFamily: 'Raleway !important',
     height: '',
-    width:'100%',
     margin: '0 auto',
-    
+    position: 'fixed',
 }
 
-const mainNav ={
+const mainNav = {
+    fontFamily: 'Raleway',
+    textTransform: 'uppercase',
+    fontWeight: '800',
     color: '#ffffff',
     display: {
         xs: 'none',
         sm: 'block',
-    }
-}
-
-const subheadline = {
-    fontFamily: 'Montserrat',
-    color:'#2a2a2a',
-    fontWeight: '900',
-    fontSize: {
-        xs:'3rem',
-        sm:'5rem',
-        md:'5rem',
-    },
-    lineHeight:'1',
-    borderTop: 'red',
-    textAlign: 'left',
-    paddingBottom:'2vh'
-}
-
-const headline = {
-    fontFamily: 'Montserrat',
-    color:'#d8d8d8',
-    fontWeight: '900',
-    fontSize: {
-        xs:'1rem',
-        sm:'1rem',
-        md:'1.5rem',
-    },
-    lineHeight: '1',
-    textAlign:'left',
-    paddingleft: {
-        xs:'30px !important',
-        sm:'0',
-        md:'0',
-    }
-}
-
-const redText= {
-    color:'#c71010', 
-    display: 'inline' 
-}
-
-const intro= {
-    padding: {
-        sm: '0 auto',
-        md:'10px 100px 0'
-    }
-}
-
-const introBox ={
-    width: {
-        xs:'100%',
-        sm:'640px',
-        md:'640px'
     },
     float: {
-        xs:'none',
-        sm:'right',
-        md:'right',
-        lg:'right'
+        sm: 'none',
+        md: 'left'
     },
-    marginTop: {
-        xs:'0',
-        sm:'0',
-        md:'100px'
+    paddingLeft: '10px',
+    margin: {
+        md: '0 auto',
+        lg: '0'
     }
 }
 
-const introHeadline= {
-    textAlign: 'left',
-    fontFamily: 'Montserrat',
-    color:'white',
-    fontWeight: '900',
-    fontSize: '3.2rem',
-    lineHeight: '1',
+const navIcons = {
+    float: {
+        sm: 'none',
+        md: 'right'
+    },
+    display: {
+        xs: 'none',
+        sm: 'block',
+    }
+
+}
+
+
+const logo = {
+    float: {
+        xs: 'none',
+        sm: 'none',
+        md: 'left',
+        lg: 'left',
+        xl: 'left'
+    }
+}
+
+const intro = {
+    marginTop: {
+        xs: '-20px',
+        sm: '50px',
+        md: '0px'
+    },
+    padding: {
+        sm: '0 auto',
+        md: '150px 0 30px',
+        lg: '150px 0 30px',
+        xl: '150px 0 30px'
+    },
     marginBottom: '30px'
 }
 
-const portrait= {
-    borderRadius: '300px',
-    overflow:'hidden',
-    margin: {
-        xs: '30px auto',
-        sm: '30px auto',
-        md: '30px auto'
-    },
-    height: {
-        xs:'250px',
-        sm:'400px',
-        md:'400px',
-        lg:'400px',
-        xl:'400px'
-    },
-    width:  {
-        xs:'250px',
-        sm:'400px',
-        md:'400px',
-        lg:'400px',
-        xl:'400px'
-    },
+const introBox = {
+
     float: {
-        md:'none',
-        lg: 'left'
+        xs: 'none',
+        sm: 'none',
+        md: 'none',
+        lg: 'none'
+    },
+    margin: {
+        xs: '0 auto',
+        sm: '0 auto',
+        md: '0px auto',
+        lg: '0px 0'
+    },
+    paddingBottom: '20px'
+}
+
+const header = {
+
+    marginBottom: '-204px'
+}
+
+const introHeadline = {
+    textAlign: 'left',
+    fontFamily: 'Raleway',
+    color: 'white',
+    textTransform: 'uppercase',
+    fontWeight: '800',
+    fontSize: '3.1rem',
+    lineHeight: '1',
+    marginBottom: '10px'
+}
+
+const headline = {
+    textAlign: 'left',
+    fontFamily: 'Raleway',
+    color: '#551d1d',
+    textTransform: 'uppercase',
+    fontWeight: '900',
+    fontSize: '3.2rem',
+    lineHeight: '1',
+}
+
+const subheadline = {
+    color: '#ffffff',
+    fontFamily: 'Raleway',
+    textAlign: 'left',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    marginBottom: '10px',
+    fontSize: '1rem'
+}
+
+const portraitBox = {
+    margin: {
+        xs: '-50px 0 0 0',
+        sm: '-50px 0 0 0',
+        md: '-50px 0 0 0',
+        lg: '0px 0 0 0',
+        xl: '0px 0 0 0'
     }
 }
 
+
 const mainContent = {
-    width:'100%', 
-    display: 'flex', 
-    flexDirection: 'column', 
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
-    bgcolor:'#0a0a0a',
+    backgroundImage: 'linear-gradient(45deg, #080000, #350606)',
     backgroundPosition: 'center',
     paddingBottom: '200px'
 }
 
 
 const videoCard = {
-    border: '10px solid #28282A',
-    height: '40vh',
-    margin: '-10vh auto 10vh',
-    boxShadow: '0px 10px 15px #000000',
+    border: '10px solid #101010',
+    margin: {
+        xs: '-10vh auto 5vh',
+        sm: '-10vh auto 5vh',
+        md: '-10vh auto 5vh',
+        lg: '-15vh auto 5vh',
+        xl: '-10vh auto 5vh'
+    },
+    boxShadow: '0px 0px 15px rgba(199,16,16,.35)',
+    zIndex: '2',
+    position: 'relative',
     width: {
-            xs: '300px',
-            sm: '480px',
-            lg: '640px',
+        xs: '300px',
+        sm: '480px',
+        lg: '640px',
     },
     height: {
         xs: '172px',
         sm: '270px',
         lg: '360px',
-        },
+    },
 }
 
-const skillBox= {
-    bgcolor:'#141414', 
-    padding:'30px', 
-    textAlign:'center',
-    maxWidth:'none',
-    fontFamily:'Merriweather'
+const redText = {
+    color: '#c71010',
+    display: 'inline',
+    fontFamily: 'Raleway',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    fontSize: '1rem'
 }
 
-const skillIcon= { 
-    maxWidth:'55px', 
-    border:'2px solid #c71010', 
-    borderRadius:'100px', 
-    bgcolor:'#101010', 
-    margin:'0 auto 10px',
-    padding:'10px'
+const toolIcon = {
+    float: 'left'
 }
 
-const skillTitle= {
-    color:'white', 
-    fontWeight:'bold', 
-    fontFamily:'Montserrat', 
-    fontSize:'1.1rem'
+const project = {
+    maxWidth: '300px'
 }
 
-const skillInfo= {
-    color:'#cbcbcb', 
-    fontFamily:'Merriweather',
-    fontStyle:'italic', 
-    fontWeight:'100', 
-    textAlign:'left',
-    textAlign:'center',
-    fontSize: '.7rem',
-    paddingTop:'1vh'
-}
-
-const icons= {
-    fontFamily: 'Montserrat',
-    width:'100%',
-    margin: '5vh auto ',
-    padding: '0 0',
-    color: 'white',
-}
-
-const clearIcon= {
-    display: {
-        xs: 'none',
-        sm: 'none',
-        md: 'block',
-        lg: 'block',
-        xl: 'block'
-    }
-}
-
-const projectItem = {
-    margin: '2vh auto', 
-    bgcolor:'#28282A',
-    border: '10px solid #28282A',
-    boxShadow: '0px 0px 10px #010101',
-    width: {
-        xs: '300px',
-        sm: '400px',
-        md: '400px',
-        lg: '400px',
-        xl: '400px',
-    }
-}
-
-const projectName = {
-    fontFamily: 'Montserrat',
-    color:'white',
-    fontWeight: '900',
-    fontSize: '1rem',
-    marginTop: '1vh',
-    paddingTop: '1vh'
-}
-
-const projectModal = {
-    border:'none',
-    margin:'0 auto',
-    width:'50%', 
-    overflow:'scroll'
-}
-
-const resume = {
-    bgcolor:'#060606',
-    color: '#d9d9d9',
-    border: '1px solid #3c3c3c',
+const skillListItem = {
+    display: 'inline',
+    padding: '0'
 
 }
 
-const resumeYear= {
-    lineHeight:'4', 
-    textAlign: 'right', 
-    width:'100%', 
-    paddingRight:'20px', 
-    fontWeight:'900'
+const skillListInfo = {
+    fontWeight: '700',
+    color: '#cfcfcf',
+    textAlign: 'left',
+    paddingRight: '30px',
+    margin: '10px 0'
 }
-
-const resumeDetail= {
-    marginTop:'-10px', 
-    minHeight: '240px'
-}
-
-const resumeBullet= {
-    fontFamily:'Merriweather',
-    fontStyle:'italic',
-    color:'#b5b5b5', 
-    fontSize:'.9rem'
-}
-
-const arrow= {
-    color:'#ffffff',
-    bgcolor: '#0c0c0c',
-    borderRadius: '5px',
-    padding: '5px'
-}
-
-const icon= {
-    color:'#c71010'
-}
-
-const logo= {
-    marginTop:'55px'
-}
-
-const whiteIcon = {
-    filter: "brightness(0) invert(1)"
-}
-
 export default Home; 
