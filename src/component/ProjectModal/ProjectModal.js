@@ -54,10 +54,8 @@ function ProjectModal(props) {
                 {
                 // grabs elements from project Modal 
                 }
-                <Grid item xs={12} sm={8} md={8} lg={8} sx={{ overflow:'scroll', height:'810px', backgroundColor:'#080808' }}>
-                        <img src={imagePs} title={props.title} alt={props.altText} width='100%'/>
-                </Grid>
-                <Grid item xs={12} sm={4} md={4} lg={4} sx={{ padding:'30px 0 0 20px', backgroundColor:'#080808' }}>
+
+                <Grid item xs={12} sm={12} md={4} lg={4} sx={{ padding:'30px 20px', backgroundColor:'#080808' }}>
                     <Typography id="project-modal-title" variant="h6" component="h2" sx={{ color:'#c71010', fontFamily: 'Raleway', fontWeight:'900', textTransform: 'uppercase' }} >
                         {projectModalObj.title}
                     </Typography>
@@ -71,6 +69,11 @@ function ProjectModal(props) {
                         Close
                     </Button>
                 </Grid>
+
+                <Grid item xs={12} sm={12} md={8} lg={8} sx={{ overflow:'scroll', height:'810px', backgroundColor:'#080808' }}>
+                        <img src={imagePs} title={props.title} alt={props.altText} width='100%'/>
+                </Grid>
+
 
             </Grid>
         </Modal>
