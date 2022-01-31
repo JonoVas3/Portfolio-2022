@@ -7,6 +7,9 @@ import emperorsPS from '../../assets/synopsis-emperors.jpg'
 import eclsPs from '../../assets/synopsis-ecls.jpg'
 import voidChatPs from '../../assets/synopsis-voidchat.jpg'
 import pcHainesPs from '../../assets/synopsis-pc_haines.jpg'
+import medPakPs from '../../assets/MedPak_Redesign-2020.jpg'
+
+
 
 function ProjectModal(props) {
 
@@ -35,6 +38,9 @@ function ProjectModal(props) {
             break;
         case "P.C. Haines":
             imagePs = pcHainesPs;
+            break;
+        case "Medical Packaging Inc":
+            imagePs = medPakPs;
             break;
     }
 

@@ -79,7 +79,7 @@ function Home() {
                                                 <a href="https://www.instagram.com/jon_v_designs/"><Instagram sx={{ marginBottom: '-8px', color: '#ffffff', paddingLeft: '10px', paddingRight: '25px' }}></Instagram></a>
                                             </ListItem>
                                             <ListItem sx={{ display: 'inline', padding: '0', margin: '5px 0 0', maxWidth: '25px' }}>
-                                                <a href="https://github.com/JonoVas3" ><GitHub sx={{ marginBottom: '-8px', color: '#ffffff', paddingLeft: '10px' }}></GitHub></a>
+                                                <a href="https://github.com/JonoVas3/Portfolio-2022/tree/master" ><GitHub sx={{ marginBottom: '-8px', color: '#ffffff', paddingLeft: '10px' }}></GitHub></a>
                                             </ListItem>
                                         </List>
                                     </Box>
@@ -103,8 +103,8 @@ function Home() {
                                         <Typography sx={{ color: '#cbcbcb', fontFamily: 'Raleway', fontWeight: '400', textAlign: 'left' }}>
                                             I am a freelance designer/developer based out of Raleigh, NC. I am also skilled in photography, video production, and video editing. If you want to see an example of my work click on the links to see the designing process or the code that I used to build this website.
                                 </Typography>
-                                        <Button sx={{ float: 'left', margin: '20px 0 0', color: '#ffffff', padding: '10px 20px', backgroundColor: '#c71010', borderRadius: '0' }}>Watch Video</Button>
-                                        <Button sx={{ float: 'left', margin: '20px 0 0 25px', color: '#ffffff', padding: '10px 20px', backgroundColor: '#c71010', borderRadius: '0' }}>View Code</Button>
+                                        <a href="https://www.youtube.com/watch?v=8CmktCBkhrg"><Button sx={{ float: 'left', margin: '20px 0 0', color: '#ffffff', padding: '10px 20px', backgroundColor: '#c71010', borderRadius: '0' }}>Watch Video</Button></a>
+                                        <a href="https://github.com/JonoVas3/Portfolio-2022"><Button sx={{ float: 'left', margin: '20px 0 0 25px', color: '#ffffff', padding: '10px 20px', backgroundColor: '#c71010', borderRadius: '0' }}>View Code</Button></a>
                                     </Box>
                                 </Grid>
 
@@ -128,7 +128,7 @@ function Home() {
 
 
                     <Card sx={videoCard}>
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/iutQJzAXiWo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dkwiQE-eQLs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </Card>
 
 
@@ -287,7 +287,7 @@ function Home() {
                                             </Grid>
                                         </Grid >
 
-                                        <Button sx={{ float: 'left', margin: '40px 0', color: '#ffffff', padding: '20px 40px', backgroundColor: '#c71010', borderRadius: '0' }}>Download Resume</Button>
+                                        <a href="https://www.linkedin.com/in/jonathan-vasquez-9aa52928/detail/overlay-view/urn:li:fsd_profileTreasuryMedia:(ACoAAAXF4FIB22nTIQkppRVLqAV5qga77cCmdAw,1635481300308)/"><Button sx={{ float: 'left', margin: '40px 0', color: '#ffffff', padding: '20px 40px', backgroundColor: '#c71010', borderRadius: '0' }}>Download Resume</Button></a>
 
 
                                     </Box>
@@ -330,7 +330,7 @@ function Home() {
                                 </Grid>
 
                                 <Grid item xs={12} sm={12} md={4} lg={4} spacing={0}>
-                                    <Button sx={{ margin: { md: '40px auto 0', sm: '40px 0', xs: '40px 0' }, float: { md: 'none', sm: 'left' }, color: '#ffffff', padding: '20px 40px', backgroundColor: '#c71010', borderRadius: '0' }}>Contact Me</Button>
+                                <a href="mailto:jonv.designs@gmail.com"><Button sx={{ margin: { md: '40px auto 0', sm: '40px 0', xs: '40px 0' }, float: { md: 'none', sm: 'left' }, color: '#ffffff', padding: '20px 40px', backgroundColor: '#c71010', borderRadius: '0' }}>Contact Me</Button></a>
                                 </Grid>
                             </Grid>
 
